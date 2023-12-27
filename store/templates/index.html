@@ -3,6 +3,22 @@ custom_filter %}
 <!-- body -->
 <div class="container-fluid mt-3">
   <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <form action="/store" method="get" class="form-inline">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search Products"
+          aria-label="Search"
+          name="search"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
     <!-- filter -->
 
     <div class="col-lg-3 mx-auto">
@@ -15,10 +31,11 @@ custom_filter %}
 
         {% for category in categories %}
         <a
-          href="/?category={{category.id}}"
+          href="/?category={{ category.id }}"
           class="list-group-item list-group-item-action btn btn-outline-success"
-          >{{category.name}}</a
         >
+          {{ category.name }} ({{ category.product_count }})
+        </a>
         {% endfor %}
       </div>
     </div>
@@ -34,8 +51,10 @@ custom_filter %}
             alt="Card image cap"
           />
           <div class="card-body">
-            <p class="card-title">{{product.name}}</p>
-            <p class="card-text"><b>{{product.price|floatformat:2}}</b></p>
+            <p class="card-title">{{ product.name }}</p>
+            <p class="card-text"><b>{{ product.price|floatformat:2 }}</b></p>
+            <a href="{% url 'item_detail' pk=product.id %}">View Details</a>
+
             <!-- {{product | is_in_cart:request.session.cart }} -->
           </div>
 
