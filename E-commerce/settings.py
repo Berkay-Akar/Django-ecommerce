@@ -69,6 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "E-commerce.wsgi.application"
+ALLOWED_HOSTS = [".vercel.app", "localhost"]
 
 
 # Database
